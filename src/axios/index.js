@@ -1,6 +1,8 @@
 import axios from 'axios'
 import router from '../router'
 // import GlobalUtil from '../utils/globalUtil'
+// import promise from 'es6-promise'
+// promise.polyfill()
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',

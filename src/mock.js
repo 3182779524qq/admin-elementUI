@@ -1,25 +1,16 @@
 const Mock = require('mockjs')
-let listData = function () {
+let loginData = function () {
   let item = {
     'code': 200,
     'data': {
-      list: [{
-        id: 1,
-        name: '张三',
-        age: 18,
-        phone: 17779036602,
-        sex: '男',
-        status: 1
-      },
-      {
-        id: 2,
-        name: '李四',
-        age: 18
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOjE1LCJleHAiOjE1ODUzMDM0MDUyNjd9.ANB_5GTIeU9aVBbNl5Ewl-ch6Baj5cI_vEIslyVDFmU",
+      userInfo: {
+        name: "王大锤",
+        phone: 17700000000
       }
-      ]
     },
     'msg': 'success'
   }
   return item
 }
-Mock.mock('/api/getInsuranceCarInfo', 'post', listData)
+Mock.mock('/api/login', 'post', loginData)

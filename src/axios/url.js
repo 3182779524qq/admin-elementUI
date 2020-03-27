@@ -3,8 +3,6 @@
 let baseUrl = '/api'
 let urls = {
   //    登录模块
-  login: baseUrl + '/admin/login',
-  //    激活用户
-  getInsuranceCarInfo: baseUrl + '/getInsuranceCarInfo'
+  login: baseUrl + '/login'
 }
 export default urls
