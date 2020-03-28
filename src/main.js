@@ -16,7 +16,7 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$url = urls
-// require('./mock.js')
+require('./mock.js')
 
 // 路由拦截，
 // router.beforeEach((to, from, next) => {

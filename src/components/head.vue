@@ -1,6 +1,9 @@
 <template>
   <div class="header">
-    <div class="system">
+    <div class="header_left">
+      <slot name="left"></slot>
+    </div>
+    <!-- <div class="system">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item
           :to="{ name:item.name }"
@@ -8,7 +11,7 @@
           :key="index"
         >{{item.label}}</el-breadcrumb-item>
       </el-breadcrumb>
-    </div>
+    </div> -->
     <div class="header_right">
       <slot name="right"></slot>
     </div>
@@ -41,24 +44,11 @@ export default {
 
 <style scoped>
 .header {
-  box-sizing: border-box;
-  height: 60px;
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
   color: #999;
-  overflow: hidden;
-  line-height: 60px;
-}
-.system {
-  float: left;
-  font-size: 16px;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-.header_right {
-  float: right;
-  padding-right: 50px;
-  font-size: 12px;
-  color: black;
-  font-family: "Microsoft YaHei";
+  font-size: 22px;
 }
 </style>

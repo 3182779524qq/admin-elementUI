@@ -42,53 +42,15 @@ export default {
       default: function() {
         return [
           {
-            index: "demo",
-            show: true,
-            title: "采购商",
-            subs: [
-              {
-                icon: "icon-gift-liwu",
-                index: "entryAudit",
-                show: true,
-                title: "入驻审核"
-              },
-              {
-                icon: "icon-gift-liwu",
-                index: "buyerManagement",
-                show: true,
-                title: "采购商信息"
-              }
-            ]
-          },
-          {
-            index: "demoForm",
-            show: true,
-            title: "商品管理",
-            subs: [
-              {
-                icon: "icon-gift-liwu",
-                index: "classify",
-                show: true,
-                title: "分类管理"
-              },
-              {
-                icon: "icon-gift-liwu",
-                index: "goodList",
-                show: true,
-                title: "商品信息"
-              }
-            ]
-          },
-          {
             index: "1",
-            title: "订单管理",
+            title: "表格管理",
             show: true,
             subs: [
               {
                 icon: "icon-gift-liwu",
-                index: "orderList",
+                index: "table",
                 show: true,
-                title: "订单信息"
+                title: "表格信息"
               }
             ]
           }
@@ -98,6 +60,8 @@ export default {
   },
   computed: {
     onRoutes() {
+      console.log(this.$route.path.replace("/", ""));
+      
       return this.$route.path.replace("/", "");
     }
   },
@@ -117,13 +81,16 @@ export default {
 .sidebar::-webkit-scrollbar {
   width: 0;
 }
+/deep/ .el-submenu__title i{
+  color: #fff;
+}
+.el-menu-item.is-active {
+    background-color: #b86600;
+  }
 .el-menu--inline li {
   /* 二级菜单颜色 */
-  // background-color: #001932 !important;
+  background-color: #b87700;
   text-indent: 10px;
 }
-// .el-menu-item {
-//   height: 50px;
-//   line-height: 50px;
-// }
+
 </style>

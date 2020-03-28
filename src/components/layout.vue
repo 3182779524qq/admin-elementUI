@@ -1,7 +1,10 @@
 <template>
   <div class="app_layout">
     <div class="app_head">
-      <myhead></myhead>
+      <myhead>
+        <div slot="left">我是系统标题</div>
+        <div slot="right">我是退出按钮</div>
+      </myhead>
     </div>
     <div class="app_aside">
       <mymenu></mymenu>
@@ -39,6 +42,7 @@ export default {
   left: 0;
   right: 0;
   height: 60px;
+  padding: 0 20px;
 }
 .app_aside{
   position: absolute;
