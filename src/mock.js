@@ -1,6 +1,6 @@
 const Mock = require('mockjs')
 let loginData = function () {
-  let item = {
+  let data = {
     'code': 200,
     'data': {
       token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOjE1LCJleHAiOjE1ODUzMDM0MDUyNjd9.ANB_5GTIeU9aVBbNl5Ewl-ch6Baj5cI_vEIslyVDFmU",
@@ -11,6 +11,55 @@ let loginData = function () {
     },
     'msg': 'success'
   }
-  return item
+  return data
 }
+let tableData = function () {
+  let data = {
+    'code': 200,
+    'data': {
+      total:5,
+      list:[
+        {
+          id: 1,
+          name: '张三',
+          age: 18,
+          phone: 17779030000,
+          sex: '男',
+          status: 1
+        },{
+          id: 1,
+          name: '张三',
+          age: 18,
+          phone: 17779030000,
+          sex: '男',
+          status: 1
+        },{
+          id: 1,
+          name: '张三',
+          age: 18,
+          phone: 17779030000,
+          sex: '男',
+          status: 1
+        },{
+          id: 1,
+          name: '张三',
+          age: 18,
+          phone: 17779030000,
+          sex: '男',
+          status: 1
+        },{
+          id: 1,
+          name: '张三',
+          age: 18,
+          phone: 17779030000,
+          sex: '男',
+          status: 1
+        },
+      ]
+    },
+    'msg': 'success'
+  }
+  return data
+}
+Mock.mock('/api/table', 'post', tableData)
 Mock.mock('/api/login', 'post', loginData)

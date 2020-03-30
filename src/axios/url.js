@@ -3,6 +3,7 @@
 let baseUrl = '/api'
 let urls = {
   //    登录模块
-  login: baseUrl + '/login'
+  login: baseUrl + '/login',
+  table: baseUrl + '/table'
 }
 export default urls
