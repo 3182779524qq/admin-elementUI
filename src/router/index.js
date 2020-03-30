@@ -18,6 +18,18 @@ const routes = [
       path: '/table',
       name: 'table',
       component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
+    },{
+      path: '/table3',
+      name: 'table3',
+      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
+    },{
+      path: '/table4',
+      name: 'table4',
+      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
+    },{
+      path: '/table5',
+      name: 'table5',
+      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
     }]
   },
   {

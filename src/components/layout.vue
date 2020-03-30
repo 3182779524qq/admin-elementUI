@@ -21,7 +21,7 @@
 
 <script>
 import myhead from "./head.vue";
-import mymenu from "./menu.vue";
+import mymenu from "./menu";
 export default {
   data() {
     return {
