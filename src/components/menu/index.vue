@@ -35,13 +35,13 @@ export default {
             index: "1",
             title: "表格管理",
             show: true,
-            subs: [
+            children: [
               {
                 icon: "icon-gift-liwu",
                 index: "table6",
                 show: true,
                 title: "表格信息",
-                subs: [
+                children: [
                   {
                     icon: "icon-gift-liwu",
                     index: "table",
@@ -57,7 +57,7 @@ export default {
             index: "table3",
             show: true,
             title: "表格信息",
-            subs: [
+            children: [
               {
                 icon: "icon-gift-liwu",
                 index: "table4",

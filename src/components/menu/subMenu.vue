@@ -1,10 +1,10 @@
 <template>
   <div class="sub_menu">
     <template v-for="item in menuList">
-      <template v-if="item.subs">
+      <template v-if="item.children">
         <el-submenu :index="item.index" :key="item.index" v-if="item.show">
           <span slot="title">{{ item.title }}</span>
-          <tree-menu :menuList="item.subs"></tree-menu>
+          <tree-menu :menuList="item.children"></tree-menu>
         </el-submenu>
       </template>
       <template v-else>
