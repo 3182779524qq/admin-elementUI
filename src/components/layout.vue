@@ -43,6 +43,7 @@ export default {
   right: 0;
   height: 60px;
   padding: 0 20px;
+  background: #fff;
 }
 .app_aside{
   position: absolute;
@@ -58,8 +59,9 @@ export default {
   left: 210px;
   right: 10px;
   bottom: 10px;
+  padding: 10px;
   overflow-y: auto;
-  background: #eee;
+  background: #fff;
   border-radius: 4px;
 }
 </style>

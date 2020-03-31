@@ -7,4 +7,7 @@
 <style lang="less">
 @import "./assets/css/reset.css";
 // @import "./assets/css/variables.lcss";
+#app{
+  background: #eee;
+}
 </style>

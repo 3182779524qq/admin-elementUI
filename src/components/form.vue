@@ -160,7 +160,17 @@ export default {
             disabled: false, // 是否禁用
             placeholder: "请输入", // placeholder提示
             multiple: false, // 是否多选，基于select，checkbox
-            filterable: false // 是否多选，基于select
+            filterable: false, // 是否多选，基于select
+            ajax: {//动态获取接口数据，基于select，checkbox
+              method: 'get',//请求方式
+              url: 'www.xx.cn',//接口地址
+              data: {},//请求参数
+              label: 'label',//下拉选择框的选择文字
+              value: 'value',//下拉选择的值
+              callback: function(data) {//接口返回数据层级处理
+                return data
+              },
+            }
           }
         ];
       }
