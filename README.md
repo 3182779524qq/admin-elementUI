@@ -1,4 +1,4 @@
-# cheergo-erp
+# vue-project
 
 ## Project setup
 ```
