@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-import GlobalUtil from "@/utils/globalUtil";
 export default {
   data() {
     return {
@@ -32,11 +31,8 @@ export default {
         account:this.account,
         password:this.password
       }).then(res=>{
-        // console.log(res)
-        let headers = {
-            token: res.data.token
-        }
-        GlobalUtil.setCookie('headers', JSON.stringify(headers))
+        console.log(res.data.token)
+        sessionStorage.setItem('accessToken', res.data.token)
         this.$router.push("/home");
       })
     }

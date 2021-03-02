@@ -1,99 +1,66 @@
-import axios from 'axios'
-import router from '../router'
-// import GlobalUtil from '../utils/globalUtil'
-// import promise from 'es6-promise'
-// promise.polyfill()
-const codeMessage = {
-  200: '服务器成功返回请求的数据。',
-  201: '新建或修改数据成功。',
-  202: '一个请求已经进入后台排队（异步任务）。',
-  204: '删除数据成功。',
-  400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
-  401: '用户没有权限（令牌、用户名、密码错误）。',
-  403: '用户得到授权，但是访问是被禁止的。',
-  404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
-  406: '请求的格式不可得。',
-  410: '请求的资源被永久删除，且不会再得到的。',
-  422: '当创建一个对象时，发生一个验证错误。',
-  500: '服务器发生错误，请检查服务器。',
-  502: '网关错误。',
-  503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。'
-}
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
-axios.defaults.withCredentials = true
-axios.defaults.timeout = 5000
-//    请求拦截器
-axios.interceptors.request.use((config) => {
-  // let header = JSON.parse(GlobalUtil.readCookie('headers'))
-  // config.headers = Object.assign(config.headers, header)
-  return config
-}, (error) => {
-  console.log(error)
-  return Promise.reject(error)
-})
-const errorStatus = [203, 205, 204]//拦截状态码，跳转到登录
-//    响应拦截器
-axios.interceptors.response.use((response) => {
-  //    console.log(response)
-  if (response.data.code !== 0 && response.data.code !== 200) {
-    if (response.data.hash && response.data.key) {
-      return response.data
-    }
-    // Message.error(response.data.msg)
-    if (errorStatus.indexOf(response.data.code) > -1) {
-      router.push({
-        name: 'login'
-      })
-    }
-  }
-  return response.data
-}, (error) => {
-  console.log(error)
-  // Message.error(error.response.status + codeMessage[error.response.status])
-  return Promise.reject(error)
-})
+import axios from 'axios';
+import router from '@/router/index';
+import  { Message } from "element-ui"
+let service = axios.create({
+  timeout: 30000
+});
 
-export default {
-  //    get请求
-  get (url, param, headers) {
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'get',
-        url,
-        params: param,
-        headers: headers || {
-          'Content-Type': 'application/json;charset=utf-8'
-        }
-      }).then(res => {
-        resolve(res)
-      }).catch(error => {
-        reject(error)
-      })
-    })
-  },
-  //    post请求
-  post (url, param, headers) {
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'post',
-        url,
-        data: param,
-        headers: headers || {
-          'Content-Type': 'application/json;charset=utf-8'
-        }
-      }).then(res => {
-        resolve(res)
-      }).catch(error => {
-        reject(error)
-      })
-    })
-  },
-  ajax (config) {
-    if (config.method.toLowerCase() === 'get') {
-      return this.get(config.url, config.data)
+service.interceptors.request.use(
+  config => {
+    let accessToken = sessionStorage.getItem('accessToken')
+    if (accessToken) {
+      config.headers['ERP-Token'] = accessToken
     } else {
-      return this.post(config.url, config.data, config.headers)
+      if (router.history.current.name!='login') {
+        router.push({
+          path: '/'
+        });
+        return Promise.reject();
+      }
     }
+    return config;
+  },
+  error => {
+    console.log(error);
+    return Promise.reject();
   }
-}
+);
+
+service.interceptors.response.use(
+  response => {
+    if (response.data.code == '20000') {
+      return response.data;
+    } else{
+      let errHtml = document.getElementsByClassName('el-message')
+      if(response.data.code == '30000') {
+        if (errHtml&&errHtml.length==0) {
+          let isToken = sessionStorage.getItem('accessToken')
+          if (isToken) {
+            sessionStorage.removeItem('accessToken')
+          }
+          Message.error('暂未登录，请先登录')
+          router.push({
+            path: '/'
+          });
+        }
+        return response.data;
+      } else if (response.data.code == '40000') {
+        if (errHtml&&errHtml.length==0) {
+          Message.error('暂无权限，请联系管理员')
+        }
+      } else {
+        if (response.data.msg&&errHtml&&errHtml.length==0) {
+          Message.error(response.data.msg)
+        }
+        return response.data;
+      }
+    }
+  },
+  error => {
+    console.log(error.data);
+    Message.error('网络繁忙，请稍后重试')
+    return Promise.reject();
+  }
+);
+
+export default service;

@@ -2,11 +2,12 @@
   <div class="side_menu">
     <el-menu
       :default-active="onRoutes"
-      text-color="#ffffff"
-      active-text-color="#ffffff"
-      background-color="#b8860b"
       router
-      :default-openeds="opens"
+      v-bind="$attrs"
+      v-on="$listeners"
+      background-color="#304156"
+      text-color="#fff"
+      active-text-color="#fff"
     >
       <mysubmenu :menuList="menuList"></mysubmenu>
     </el-menu>
@@ -16,15 +17,12 @@
 import mysubmenu from "./subMenu.vue";
 
 export default {
-  name: "treeMenus",
+  name: "ElmeMenus",
   components: {
     mysubmenu
   },
   data() {
-    return {
-      collapse: false,
-      opens: []
-    };
+    return {};
   },
   props: {
     menuList: {
@@ -72,39 +70,25 @@ export default {
   },
   computed: {
     onRoutes() {
-      return this.$route.path.replace("/", "");
+      return this.$route.name;
     }
   },
   created() {},
-  methods: {
-    openKey(e) {
-      console.log(e);
-    }
-  }
+  methods: {}
 };
 </script>
 <style scoped lang="less">
-/deep/ .el-menu {
-  border-right: 0;
-  background-color: transparent;
-}
 .side_menu {
   display: block;
-  overflow-y: scroll;
+  // overflow-y: scroll;
+  /deep/ .el-menu{
+    border-right: 0;
+    .el-menu-item.is-active{
+      background: #263445!important;
+    }
+  }
 }
 .side_menu::-webkit-scrollbar {
   width: 0;
-}
-/deep/ .el-submenu__title i {
-  color: #fff;
-  text-indent: 0;
-}
-.el-menu-item.is-active {
-  background-color: #b86600 !important;
-}
-.el-menu--inline li {
-  /* 二级菜单颜色 */
-  background-color: #b87700 !important;
-  text-indent: 10px;
 }
 </style>

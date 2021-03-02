@@ -12,6 +12,7 @@
         >{{item.label}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div> -->
+    <slot></slot>
     <div class="header_right">
       <slot name="right"></slot>
     </div>
@@ -19,7 +20,7 @@
 </template>
 <script>
 export default {
-  name: "HhhHead",
+  name: "ElmeHead",
   data() {
     return {
       routeArr: []

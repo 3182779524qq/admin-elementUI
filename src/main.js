@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+// import store from './store'
 import axios from './axios/index.js'//  请求响应拦截
 import urls from './axios/url.js'//  请求url地址
 
@@ -10,8 +10,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
 // 总线程通讯
-// const bus = new Vue();
-// Vue.prototype.bus = bus;
+const bus = new Vue();
+Vue.prototype.$bus = bus;
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
@@ -25,6 +25,5 @@ require('./mock.js')
 
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app')

@@ -14,23 +14,17 @@ const routes = [
     name: 'home',
     component: layout,
     redirect: '/table',
-    children: [{
-      path: '/table',
-      name: 'table',
-      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
-    },{
-      path: '/table3',
-      name: 'table3',
-      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
-    },{
-      path: '/table4',
-      name: 'table4',
-      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
-    },{
-      path: '/table5',
-      name: 'table5',
-      component: () => import(/* webpackChunkName: "login" */'../views/table.vue')
-    }]
+    children: [
+      {
+        path: '/table',
+        name: 'table',
+        component: () => import(/* webpackChunkName: "login" */'../views/sample/table.vue')
+      },{
+        path: '/form',
+        name: 'form',
+        component: () => import(/* webpackChunkName: "login" */'../views/sample/form.vue')
+      },
+    ]
   },
   {
     path: '/login',
