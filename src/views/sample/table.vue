@@ -191,6 +191,11 @@ export default {
         if (res.code==20000) {
           this.pagination.total = res.data.total
           this.dataList = res.data.list
+          // 当前页如果没数据就在调一次
+          if (this.dataList.length==0&&res.data.total!=0) {
+            this.pagination.current -=1
+            this.getList()
+          }
         }
       }).catch(()=>{
         this.tableLoading = false
