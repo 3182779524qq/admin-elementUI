@@ -1,7 +1,8 @@
 <!-- 
     //element form二次封装组件
     author summer
-    2021.2.8
+    2021.2.8,
+        4.15 更新：新增表单项具名插槽
  -->
 <template>
   <el-form
@@ -20,7 +21,10 @@
       :style="{ width:item.width?item.width:'50%',display:item.hide?'none':'block'}"
     >
       <el-form-item :ref="item.ref" :label="item.label" :prop="item.prop" :required="item.required">
-        <component :is="'elme-'+item.type" v-model="formValue[item.prop]" :itemObject="item" :size="size"></component>
+        <template v-if="item.type==='slot'">
+          <slot :name="item.slot"></slot>
+        </template>
+        <component v-else :is="'elme-'+item.type" v-model="formValue[item.prop]" :itemObject="item" :size="size"></component>
       </el-form-item>
     </div>
     <slot></slot>
@@ -67,6 +71,7 @@ export default {
             prop: "id", //表单项的字段名称，必填
             ref: "ref", //每一项的ref
             width: "50%", //一行的占比，默认一行两个
+            wrapWidth: "85%", //输入框宽度，默认85%
             hide: false, //是否隐藏这一项，默认显示
             disabled: false, //是否禁用，默认false
             maxLength: 30, //最大长度	，默认30
